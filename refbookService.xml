@@ -1,0 +1,380 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://nsi.rosminzdrav.ru/refbook/service/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:egisz="http://egisz.rosminzdrav.ru" name="refbookService" targetNamespace="http://nsi.rosminzdrav.ru/refbook/service/">
+  <wsdl:types>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://nsi.rosminzdrav.ru/refbook/service/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:egisz="http://egisz.rosminzdrav.ru" xmlns="http://schemas.xmlsoap.org/wsdl/">
+            
+  <xsd:import namespace="http://egisz.rosminzdrav.ru" schemaLocation="https://nsi.rosminzdrav.ru/wsdl/refbookService?xsd=transportHeaders.xsd"/>
+        
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://nsi.rosminzdrav.ru/refbook/service/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:egisz="http://egisz.rosminzdrav.ru" xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://nsi.rosminzdrav.ru/refbook/service/">
+
+            
+  <xsd:element name="postVersionRequest" type="tns:postVersionRequest"/>
+            
+  <xsd:element name="postVersionResponse" type="tns:postVersionResponse"/>
+
+            
+  <xsd:complexType name="postVersionRequest">
+                
+    <xsd:sequence>
+                    
+      <xsd:element name="oid" type="xsd:string">
+                        
+        <xsd:annotation>
+                            
+          <xsd:documentation>OID справочника</xsd:documentation>
+                        
+        </xsd:annotation>
+                    
+      </xsd:element>
+                    
+      <xsd:element name="structure" type="tns:structure">
+                        
+        <xsd:annotation>
+                            
+          <xsd:documentation>Описание структуры версии</xsd:documentation>
+                        
+        </xsd:annotation>
+                    
+      </xsd:element>
+                    
+      <xsd:element name="data" type="xsd:base64Binary" xmime:expectedContentTypes="application/octet-stream"/>
+                
+    </xsd:sequence>
+            
+  </xsd:complexType>
+
+
+            
+  <xsd:complexType name="postVersionResponse">
+                
+    <xsd:sequence>
+                    
+      <xsd:element name="status" type="tns:status"/>
+                    
+      <xsd:element name="message" type="xsd:string"/>
+                
+    </xsd:sequence>
+            
+  </xsd:complexType>
+
+            
+  <xsd:complexType name="structure">
+                
+    <xsd:sequence>
+                    
+      <xsd:element minOccurs="1" name="fieldList" type="tns:fieldList">
+                        
+        <xsd:annotation>
+                            
+          <xsd:documentation>Список полей</xsd:documentation>
+                        
+        </xsd:annotation>
+                    
+      </xsd:element>
+                    
+      <xsd:element minOccurs="1" name="keyList" type="tns:keyList">
+                        
+        <xsd:annotation>
+                            
+          <xsd:documentation>Список ключей</xsd:documentation>
+                        
+        </xsd:annotation>
+                    
+      </xsd:element>
+                
+    </xsd:sequence>
+            
+  </xsd:complexType>
+
+            
+  <xsd:complexType name="fieldList">
+                
+    <xsd:sequence>
+                    
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="field" type="tns:field">
+                        
+        <xsd:annotation>
+                            
+          <xsd:documentation>Описание поля</xsd:documentation>
+                        
+        </xsd:annotation>
+                    
+      </xsd:element>
+                
+    </xsd:sequence>
+            
+  </xsd:complexType>
+
+            
+  <xsd:complexType name="field">
+                
+    <xsd:sequence>
+                    
+      <xsd:element name="number" type="xsd:integer">
+                        
+        <xsd:annotation>
+                            
+          <xsd:documentation>Номер</xsd:documentation>
+                        
+        </xsd:annotation>
+                    
+      </xsd:element>
+                    
+      <xsd:element name="code" type="xsd:string">
+                        
+        <xsd:annotation>
+                            
+          <xsd:documentation>Код</xsd:documentation>
+                        
+        </xsd:annotation>
+                    
+      </xsd:element>
+                    
+      <xsd:element minOccurs="0" name="alias" type="xsd:string">
+                        
+        <xsd:annotation>
+                            
+          <xsd:documentation>Наименование</xsd:documentation>
+                        
+        </xsd:annotation>
+                    
+      </xsd:element>
+                    
+      <xsd:element minOccurs="0" name="description" type="xsd:string">
+                        
+        <xsd:annotation>
+                            
+          <xsd:documentation>Описание</xsd:documentation>
+                        
+        </xsd:annotation>
+                    
+      </xsd:element>
+                    
+      <xsd:element name="dataType" type="tns:dataType">
+                        
+        <xsd:annotation>
+                            
+          <xsd:documentation>Тип данных</xsd:documentation>
+                        
+        </xsd:annotation>
+                    
+      </xsd:element>
+                    
+      <xsd:element minOccurs="0" name="visible" type="boolean">
+                        
+        <xsd:annotation>
+                            
+          <xsd:documentation/>
+                        
+        </xsd:annotation>
+                    
+      </xsd:element>
+                
+    </xsd:sequence>
+            
+  </xsd:complexType>
+
+            
+  <xsd:complexType name="keyList">
+                
+    <xsd:sequence>
+                    
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="key" type="tns:key">
+                        
+        <xsd:annotation>
+                            
+          <xsd:documentation>Описание ключа</xsd:documentation>
+                        
+        </xsd:annotation>
+                    
+      </xsd:element>
+                
+    </xsd:sequence>
+            
+  </xsd:complexType>
+
+            
+  <xsd:complexType name="key">
+                
+    <xsd:sequence>
+                    
+      <xsd:element name="number" type="xsd:integer">
+                        
+        <xsd:annotation>
+                            
+          <xsd:documentation>Номер</xsd:documentation>
+                        
+        </xsd:annotation>
+                    
+      </xsd:element>
+                    
+      <xsd:element name="field" type="xsd:string">
+                        
+        <xsd:annotation>
+                            
+          <xsd:documentation>Поле</xsd:documentation>
+                        
+        </xsd:annotation>
+                    
+      </xsd:element>
+                    
+      <xsd:element name="type" type="tns:keyType">
+                        
+        <xsd:annotation>
+                            
+          <xsd:documentation>Тип ключа</xsd:documentation>
+                        
+        </xsd:annotation>
+                    
+      </xsd:element>
+                
+    </xsd:sequence>
+            
+  </xsd:complexType>
+
+            
+  <xsd:simpleType name="dataType">
+                
+    <xsd:restriction base="xsd:string">
+                    
+      <xsd:enumeration value="VARCHAR">
+                        
+        <xsd:annotation>
+                            
+          <xsd:documentation>Строчный</xsd:documentation>
+                        
+        </xsd:annotation>
+                    
+      </xsd:enumeration>
+                    
+      <xsd:enumeration value="INTEGER">
+                        
+        <xsd:annotation>
+                            
+          <xsd:documentation>Целочисленный</xsd:documentation>
+                        
+        </xsd:annotation>
+                    
+      </xsd:enumeration>
+                    
+      <xsd:enumeration value="DATETIME">
+                        
+        <xsd:annotation>
+                            
+          <xsd:documentation>Дата</xsd:documentation>
+                        
+        </xsd:annotation>
+                    
+      </xsd:enumeration>
+                
+    </xsd:restriction>
+            
+  </xsd:simpleType>
+
+            
+  <xsd:simpleType name="keyType">
+                
+    <xsd:restriction base="xsd:string">
+                    
+      <xsd:enumeration value="PRIMARY">
+                        
+        <xsd:annotation>
+                            
+          <xsd:documentation>Первичный</xsd:documentation>
+                        
+        </xsd:annotation>
+                    
+      </xsd:enumeration>
+                    
+      <xsd:enumeration value="FOREIGN">
+                        
+        <xsd:annotation>
+                            
+          <xsd:documentation>Ссылка на родительскую запись для иерархического справочника
+                            </xsd:documentation>
+                        
+        </xsd:annotation>
+                    
+      </xsd:enumeration>
+                    
+      <xsd:enumeration value="VALUE">
+                        
+        <xsd:annotation>
+                            
+          <xsd:documentation>Отображение в дереве для иерархического справочника</xsd:documentation>
+                        
+        </xsd:annotation>
+                    
+      </xsd:enumeration>
+                    
+      <xsd:enumeration value="SORTING">
+                        
+        <xsd:annotation>
+                            
+          <xsd:documentation>Сортировка</xsd:documentation>
+                        
+        </xsd:annotation>
+                    
+      </xsd:enumeration>
+                
+    </xsd:restriction>
+            
+  </xsd:simpleType>
+
+            
+  <xsd:simpleType name="status">
+                
+    <xsd:restriction base="xsd:string">
+                    
+      <xsd:enumeration value="OK"/>
+                    
+      <xsd:enumeration value="ERROR"/>
+                
+    </xsd:restriction>
+            
+  </xsd:simpleType>
+        
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="postVersionResponse">
+    <wsdl:part element="tns:postVersionResponse" name="body">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="postVersionRequest">
+    <wsdl:part element="egisz:transportHeader" name="header">
+    </wsdl:part>
+    <wsdl:part element="tns:postVersionRequest" name="body">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SOAPServicePortType">
+    <wsdl:operation name="postVersion">
+<wsdl:documentation>Публикации версии справочника</wsdl:documentation>
+      <wsdl:input message="tns:postVersionRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:postVersionResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SOAPServiceBinding" type="tns:SOAPServicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="postVersion">
+      <soap:operation soapAction="postVersion"/>
+      <wsdl:input name="postVersionRequest">
+        <soap:header message="tns:postVersionRequest" part="header" use="literal">
+        </soap:header>
+        <soap:body parts="body" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="postVersionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="refbookService">
+    <wsdl:port binding="tns:SOAPServiceBinding" name="SOAPServicePort">
+      <soap:address location="https://nsi.rosminzdrav.ru/wsdl/refbookService"/>
+    </wsdl:port>
+  </wsdl:service>
+    <wsp:Policy wsu:Id="MTOM_Policy">
+        <wsoma:OptimizedMimeSerialization wsp:Optional="true"/>
+    </wsp:Policy>
+</wsdl:definitions>
